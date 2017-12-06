@@ -147,7 +147,7 @@ public class ChatTabFragment extends Fragment {
                 myIntent.putExtra("image", profile_pic);
                 myIntent.putExtra("Email", email_id);
                 startActivity(myIntent);
-                myTimer.cancel();
+               // myTimer.cancel();
 
 
             }
