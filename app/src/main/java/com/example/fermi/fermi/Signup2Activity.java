@@ -141,19 +141,19 @@ public class Signup2Activity extends AppCompatActivity {
                                         user.setName(FullName.getText().toString());
                                         user.setEmail(email);
                                         user.setUdid(firebaseAuth.getCurrentUser().getUid());
-                                        user.setProfile(downloadUrl);
+                                       // user.setProfile(downloadUrl);
 
                                         UserProfileChangeRequest profileUpdates;
 
-                                        if (downloadUrl != null && !downloadUrl.isEmpty()) {
+                                        if(downloadUrl==null) {
+                                            user.setProfile(downloadUrl);
+                                            profileUpdates = new UserProfileChangeRequest.Builder()
+                                                    .setDisplayName(user.getName().trim())
+                                                    .build();
+                                        }else{
                                             profileUpdates = new UserProfileChangeRequest.Builder()
                                                     .setDisplayName(user.getName().trim())
                                                     .setPhotoUri(Uri.parse(downloadUrl))
-                                                    .build();
-                                        }
-                                        else {
-                                            profileUpdates = new UserProfileChangeRequest.Builder()
-                                                    .setDisplayName(user.getName().trim())
                                                     .build();
                                         }
 
@@ -209,5 +209,36 @@ public class Signup2Activity extends AppCompatActivity {
         });
     }
 
+  /*  public boolean isOnline() {
+        ConnectivityManager cm =
+                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
 
+        if (netInfo != null && netInfo.isConnectedOrConnecting()) {
+            alertDialog.dismiss();
+            *//*Toast.makeText(MainActivity.this,"Internet connection available  ",
+                    Toast.LENGTH_SHORT).show();*//*
+            return true;
+        }
+        ;
+       *//* Toast.makeText(MainActivity.this,"No Internet connection available  ",
+                Toast.LENGTH_SHORT).show();*//*
+
+        alertDialog.setTitle("Network");
+
+        // Setting Dialog Message
+        alertDialog.setMessage("No network connection available");
+
+        // Setting OK Button
+        alertDialog.setButton("Retry", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                alertDialog.dismiss();
+            }
+        });
+
+        // Showing Alert Message
+        alertDialog.show();
+        return false;
+    }
+*/
 }
