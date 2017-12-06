@@ -146,7 +146,7 @@ public class ContactTabFragment extends Fragment {
                 myIntent.putExtra("image", profile_pic);
                 myIntent.putExtra("Email", email_id);
                 startActivity(myIntent);
-                myTimer.cancel();
+                //myTimer.cancel();
             }
         });
 
@@ -159,7 +159,7 @@ public class ContactTabFragment extends Fragment {
                 String selected = ((TextView) view.findViewById(R.id.name)).getText().toString();
                 String uid = ((TextView) view.findViewById(R.id.uid_name)).getText().toString();
                 String profile_pic=((TextView) view.findViewById(R.id.profile_url)).getText().toString();
-                myTimer.cancel();
+               // myTimer.cancel();
                 Intent myIntent = new Intent(getContext(), ChatActivitycontact.class);
                 myIntent.putExtra("Username", selected );
                 myIntent.putExtra("Uid", uid );
